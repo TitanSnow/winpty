@@ -1,0 +1,29 @@
+set_xmakever("2.1.3")
+set_project("winpty")
+set_languages("ansi","gnuxx11")
+add_defines("_WIN32_WINNT=0x0501")
+target("winpty")
+    set_kind("shared")
+    add_headers("include/*")
+    add_includedirs("include","gen")
+    add_defines("COMPILING_WINPTY_DLL")
+    add_links("advapi32","user32")
+    add_files(
+                "libwinpty/AgentLocation.cc",
+                "libwinpty/winpty.cc",
+                "shared/BackgroundDesktop.cc",
+                "shared/Buffer.cc",
+                "shared/DebugClient.cc",
+                "shared/GenRandom.cc",
+                "shared/OwnedHandle.cc",
+                "shared/StringUtil.cc",
+                "shared/WindowsSecurity.cc",
+                "shared/WindowsVersion.cc",
+                "shared/WinptyAssert.cc",
+                "shared/WinptyException.cc",
+                "shared/WinptyVersion.cc")
+    before_build(function (target)
+        os.cd("shared")
+        os.exec("UpdateGenVersion.bat")
+        os.cd("..")
+    end)
