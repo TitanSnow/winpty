@@ -6,7 +6,7 @@ target("winpty-agent")
     set_kind("binary")
     add_headers("include/*")
     add_includedirs("include","gen")
-    add_defines("WINPTY_AGENT_ASSERT")
+    add_defines("WINPTY_AGENT_ASSERT","NOMINMAX")
     add_links("advapi32","user32","shell32")
     add_files(
                 "agent/Agent.cc",
@@ -49,7 +49,7 @@ target("winpty")
     set_kind("shared")
     add_headers("include/*")
     add_includedirs("include","gen")
-    add_defines("COMPILING_WINPTY_DLL")
+    add_defines("COMPILING_WINPTY_DLL","NOMINMAX")
     add_links("advapi32","user32")
     add_files(
                 "libwinpty/AgentLocation.cc",
