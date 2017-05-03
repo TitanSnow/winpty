@@ -1,5 +1,3 @@
-set_xmakever("2.1.3")
-set_project("winpty")
 target("winpty-agent")
     set_languages("ansi","gnuxx11")
     add_cxflags("/EHsc")
