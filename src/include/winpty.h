@@ -38,6 +38,11 @@
 #define WINPTY_API __declspec(dllimport)
 #endif
 
+#ifdef COMPILING_WINPTY_LIB
+#undef WINPTY_API
+#define WINPTY_API
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
